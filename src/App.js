@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import styled from "styled-components";
+import { useState } from "react";
+import Header from "./components/templates/Header/Header";
+import Routing from "./Routes/Routes";
+import NavLeft from "./components/templates/Navs/NavLeft";
+const WapperApp = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const LayoutApp = styled.div`
+  display: flex;
+`;
+const WrapperPage = styled.div`
+  width.100%;
+`;
+const App = () => {
+  const [isOpenNavLeft, setIsOpenNavLeft] = useState(false);
+  const [isOpenNavLeftHover, setIsOpenNavLeftHover] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WapperApp>
+      <Header OnclickToggleButton={() => setIsOpenNavLeft(!isOpenNavLeft)} />
+      <LayoutApp>
+        <NavLeft
+          open={isOpenNavLeft}
+          hover={isOpenNavLeftHover}
+          onMouseEnter={() => setIsOpenNavLeftHover(true)}
+          onMouseLeave={() => setIsOpenNavLeftHover(false)}
+        />
+        <Routing open={isOpenNavLeft} />
+      </LayoutApp>
+    </WapperApp>
   );
-}
+};
 
 export default App;
