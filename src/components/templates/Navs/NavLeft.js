@@ -1,6 +1,10 @@
 import { useState } from "react";
 import NavLeftContainer from "../Containers/NavLeftContainer";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import styled from "styled-components";
 const Contenido = styled.div`
   padding: 64px 0.2em 0.2em 0.2em;
@@ -90,10 +94,10 @@ export default function NavLeft({ open, hover, ...props }) {
             onClick={() => setPosItem(2)}
           >
             <div>
-              <LightbulbOutlinedIcon />
+              <NotificationsNoneOutlinedIcon />
             </div>
 
-            <span>Notas</span>
+            <span>Recordatorios</span>
           </Item>
           <Item
             hover={hover}
@@ -102,10 +106,10 @@ export default function NavLeft({ open, hover, ...props }) {
             onClick={() => setPosItem(3)}
           >
             <div>
-              <LightbulbOutlinedIcon />
+              <EditOutlinedIcon />
             </div>
 
-            <span>Notas</span>
+            <span>Editar etiquetas</span>
           </Item>
           <Item
             hover={hover}
@@ -114,10 +118,23 @@ export default function NavLeft({ open, hover, ...props }) {
             onClick={() => setPosItem(4)}
           >
             <div>
-              <LightbulbOutlinedIcon />
+              <ArchiveOutlinedIcon />
             </div>
 
-            <span>Notas</span>
+            <span>Archivar</span>
+          </Item>
+
+          <Item
+            hover={hover}
+            isOpen={open}
+            active={posItem === 5}
+            onClick={() => setPosItem(5)}
+          >
+            <div>
+              <DeleteOutlinedIcon />
+            </div>
+
+            <span>Papelera</span>
           </Item>
         </ListItems>
       </Contenido>

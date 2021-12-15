@@ -1,5 +1,7 @@
 import HomeContainer from "../PageContainers/HomeContainer";
 import styled from "styled-components";
+import FormCreateNote from "../../organismos/FormCreateNote/FormCreateNote";
+import ListNotes from "../../organismos/ListNotes/ListNotes";
 const Contenido = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,11 +14,28 @@ const Contenido = styled.div`
     padding: 64px 1em 1em 5em;
   }
 `;
+
+const WrapperCForm = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 140px;
+`;
+
+const ListWrapperNotes = styled.div`
+  margin: 0 5em;
+`;
 export default function Home({ open }) {
   return (
     <HomeContainer>
       <Contenido open={open}>
-        <h1>HomePage</h1>
+        <WrapperCForm>
+          <FormCreateNote />
+        </WrapperCForm>
+        <ListWrapperNotes>
+          <ListNotes />
+        </ListWrapperNotes>
       </Contenido>
     </HomeContainer>
   );
