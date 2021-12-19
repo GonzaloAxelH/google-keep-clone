@@ -1,75 +1,20 @@
 import { useState } from "react";
-import NavLeftContainer from "../Containers/NavLeftContainer";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import styled from "styled-components";
-const Contenido = styled.div`
-  padding: 64px 0.2em 0.2em 0.2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  svg {
-    width: 50px;
-  }
-`;
+import { Contenido, Wrapper, ListItems, Item } from "./Styles.jsx";
+import { paths } from "../../../Routes/Routes";
 
-const Item = styled.div`
-  padding: 0.2em;
-  display: flex;
-  border-radius: 0 50px 50px 0;
-  background: ${(props) =>
-    props.active && (props.isOpen || props.hover)
-      ? "rgb(254,239,195)"
-      : "transparent"};
-  width: 100%;
-  align-items: center;
-  cursor: pointer;
-  &:hover {
-    background: ${(props) =>
-      props.active && (props.isOpen || props.hover)
-        ? "rgb(254,239,195)"
-        : !props.isOpen && props.active
-        ? "transparent"
-        : "rgb(241,243,244)"};
-  }
+function NavLeftContainer({ children, isOpen, hover, ...props }) {
+  return (
+    <Wrapper hover={hover} isOpen={isOpen} {...props}>
+      {children}
+    </Wrapper>
+  );
+}
 
-  svg {
-    fill: rgb(95, 95, 104);
-  }
-  span {
-    min-width: 0;
-    overflow: hidden;
-  }
-  div {
-    background: ${(props) =>
-      props.active && (!props.isOpen || !props.hover)
-        ? "rgb(254,239,195)"
-        : "transparent"};
-    display: flex;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    justify-content: center;
-    align-items: center;
-  }
-  div:hover {
-    background: ${(props) =>
-      props.active && (!props.isOpen || !props.hover)
-        ? "rgb(254,239,195)"
-        : !props.isOpen || !props.hover
-        ? "rgb(241,243,244)"
-        : "transparent"};
-  }
-`;
-const ListItems = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-`;
 export default function NavLeft({ open, hover, ...props }) {
   const [posItem, setPosItem] = useState(1);
   return (
@@ -77,6 +22,7 @@ export default function NavLeft({ open, hover, ...props }) {
       <Contenido>
         <ListItems>
           <Item
+            to={paths.HOME}
             hover={hover}
             isOpen={open}
             active={posItem === 1}
@@ -88,6 +34,7 @@ export default function NavLeft({ open, hover, ...props }) {
             <span>Notas</span>
           </Item>
           <Item
+            to={paths.REMINDERS}
             hover={hover}
             isOpen={open}
             active={posItem === 2}
@@ -100,6 +47,7 @@ export default function NavLeft({ open, hover, ...props }) {
             <span>Recordatorios</span>
           </Item>
           <Item
+            to={paths.LABELS}
             hover={hover}
             isOpen={open}
             active={posItem === 3}
@@ -112,6 +60,7 @@ export default function NavLeft({ open, hover, ...props }) {
             <span>Editar etiquetas</span>
           </Item>
           <Item
+            to={paths.ARCHIVE}
             hover={hover}
             isOpen={open}
             active={posItem === 4}
@@ -125,6 +74,7 @@ export default function NavLeft({ open, hover, ...props }) {
           </Item>
 
           <Item
+            to={paths.TRASH}
             hover={hover}
             isOpen={open}
             active={posItem === 5}

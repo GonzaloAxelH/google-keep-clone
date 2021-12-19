@@ -1,3 +1,12 @@
+import {
+  InputsForm,
+  Wrapper,
+  FijedNotes,
+  OtherNotes,
+  TitleNotes,
+  WrapperNote,
+  OptionsNotes,
+} from "./Styles.jsx";
 import AddAlertOutlinedIcon from "@mui/icons-material/AddAlertOutlined";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
@@ -8,57 +17,7 @@ import UndoOutlinedIcon from "@mui/icons-material/UndoOutlined";
 import RedoOutlinedIcon from "@mui/icons-material/RedoOutlined";
 import ModalNote from "./ModalNote";
 import { useState } from "react";
-import styled from "styled-components";
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const FijedNotes = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 1em 0;
-`;
-const OtherNotes = styled.div``;
-const TitleNotes = styled.p``;
 
-const WrapperNote = styled.div`
-  width: ${(props) => props.witdh};
-  margin: 0.7em;
-  min-height: 154px;
-  background: ${(props) => props.backgroundColor};
-  border: ${(props) =>
-    !props.backgroundColor === "#FFFFFF"
-      ? "1px solid #000"
-      : "1px solid transparent"};
-  border-radius: 10px;
-  padding: 16px 14px 7px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  cursor: pointer;
-  &:hover {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  }
-`;
-const InputsForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  input {
-    outline: none;
-    margin: 0;
-    padding: 0.5em 0.3em;
-    background: transparent;
-    border: none;
-    font-size: 18px;
-  }
-  input:nth-child(1) {
-    font-weight: bold;
-  }
-`;
-const OptionsNotes = styled.div``;
 const Note = ({ color }) => {
   const [openModal, setOpenModal] = useState(false);
   const [titleNote, setTitleNote] = useState("Nota1");
@@ -79,14 +38,16 @@ const Note = ({ color }) => {
         <h4>Nota 1</h4>
         <p>Descripccion</p>
         <OptionsNotes>
-          <AddAlertOutlinedIcon />
-          <PersonAddOutlinedIcon />
-          <PaletteOutlinedIcon />
-          <ImageOutlinedIcon />
-          <ArchiveOutlinedIcon />
-          <MoreVertOutlinedIcon />
-          <UndoOutlinedIcon />
-          <RedoOutlinedIcon />
+          <div className="options-form-note">
+            <AddAlertOutlinedIcon />
+            <PersonAddOutlinedIcon />
+            <PaletteOutlinedIcon />
+            <ImageOutlinedIcon />
+            <ArchiveOutlinedIcon />
+            <MoreVertOutlinedIcon />
+            <UndoOutlinedIcon />
+            <RedoOutlinedIcon />
+          </div>
         </OptionsNotes>
       </WrapperNote>
       <ModalNote

@@ -3,6 +3,8 @@ import { useState } from "react";
 import Header from "./components/templates/Header/Header";
 import Routing from "./Routes/Routes";
 import NavLeft from "./components/templates/Navs/NavLeft";
+import { BrowserRouter } from "react-router-dom";
+
 const WapperApp = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,23 +12,23 @@ const WapperApp = styled.div`
 const LayoutApp = styled.div`
   display: flex;
 `;
-const WrapperPage = styled.div`
-  width.100%;
-`;
+
 const App = () => {
   const [isOpenNavLeft, setIsOpenNavLeft] = useState(false);
   const [isOpenNavLeftHover, setIsOpenNavLeftHover] = useState(false);
   return (
     <WapperApp>
-      <Header OnclickToggleButton={() => setIsOpenNavLeft(!isOpenNavLeft)} />
+      <Header OnclickToggleNavleft={() => setIsOpenNavLeft(!isOpenNavLeft)} />
       <LayoutApp>
-        <NavLeft
-          open={isOpenNavLeft}
-          hover={isOpenNavLeftHover}
-          onMouseEnter={() => setIsOpenNavLeftHover(true)}
-          onMouseLeave={() => setIsOpenNavLeftHover(false)}
-        />
-        <Routing open={isOpenNavLeft} />
+        <BrowserRouter>
+          <NavLeft
+            open={isOpenNavLeft}
+            hover={isOpenNavLeftHover}
+            onMouseEnter={() => setIsOpenNavLeftHover(true)}
+            onMouseLeave={() => setIsOpenNavLeftHover(false)}
+          />
+          <Routing open={isOpenNavLeft} />
+        </BrowserRouter>
       </LayoutApp>
     </WapperApp>
   );

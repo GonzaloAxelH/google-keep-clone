@@ -1,154 +1,157 @@
-import styled from "styled-components";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import HeaderContainer from "../Containers/HeaderContainer";
+import MenuItem from "@mui/material/MenuItem";
 import Logo from "../../atoms/ButtonImages/Logo";
 import FormSearch from "../../molecules/FormSearch/FormSearch";
 import ReplayOutlinedIcon from "@mui/icons-material/ReplayOutlined";
-import ViewAgendaOutlinedIcon from "@mui/icons-material/ViewAgendaOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 import ImgUser from "../../atoms/ButtonImages/User";
-import Menu from "@mui/material/Menu";
+import BasicMenu from "../../Modals/Menu";
 import { useState } from "react";
-import MyModalConfiguration from "./MyModalConfiguration";
-import MenuItem from "@mui/material/MenuItem";
-const HeaderComponent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+import ModalShared from "../../Modals/MyModalShared";
+import ModalConfiguration from "../../Modals/MyModalConfig";
+import {
+  Wrapper,
+  HeaderComponent,
+  LogoContainer,
+  Options,
+  UserOptions,
+  MenuButtonWrapper,
+} from "./HeaderStyles.jsx";
 
-  .wrapper__menu-icon {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .wrapper__menu-icon:hover {
-    background: rgb(241, 243, 244);
-  }
-`;
-
-const MenuButtonWrapper = styled.div``;
-const LogoContainer = styled.div`
-  display: flex;
-  padding-right: 35px;
-  a {
-    display: flex;
-    text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 44px;
-      height: 45px;
-    }
-  }
-  span {
-    font-size: 22px;
-    color: #5f6368;
-    padding: 5px;
-  }
-`;
-
-const Options = styled.div`
-  display: flex;
-
-  padding: 0 10px;
-`;
-const UserOptions = styled.div`
-  display: flex;
-
-  padding: 0 10px;
-`;
-
-const BasicMenu = ({ handleCloseMenu, anchorEl, open }) => {
-  const [openModal, setOpenModal] = useState(false);
-
+const IconWrapper = ({ Icon, onClick, children, ...args }) => {
   return (
     <>
-      <Menu
-        id="basic-menu"
+      <div onClick={onClick} className="wrapper__menu-icon" {...args}>
+        <Icon />
+      </div>
+      {children}
+    </>
+  );
+};
+
+const MenuUser = ({ idmenu, handleCloseMenu, open, anchorEl }) => {
+  const [openModalConfig, setOpenModalConfig] = useState(false);
+  const [openModalShared, setOpenModalShared] = useState(false);
+  return (
+    <>
+      <BasicMenu
+        idMenu={idmenu}
+        handleCloseMenu={handleCloseMenu}
+        openMenu={open}
         anchorEl={anchorEl}
-        open={open}
-        onClose={handleCloseMenu}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
       >
         <MenuItem
           onClick={() => {
             handleCloseMenu();
-            setOpenModal(true);
+            setOpenModalConfig(true);
           }}
         >
           Configuracion
         </MenuItem>
-        <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
-        <MenuItem onClick={handleCloseMenu}>Logout</MenuItem>
-      </Menu>
-      <MyModalConfiguration
-        handleCloseModal={() => setOpenModal(false)}
-        openModal={openModal}
+        <MenuItem
+          onClick={() => {
+            handleCloseMenu();
+            setOpenModalShared(true);
+          }}
+        >
+          Shared
+        </MenuItem>
+      </BasicMenu>
+
+      <ModalShared
+        handleCloseModal={() => setOpenModalShared(!openModalShared)}
+        openModal={openModalShared}
+      />
+      <ModalConfiguration
+        handleCloseModal={() => setOpenModalConfig(!openModalConfig)}
+        openModal={openModalConfig}
       />
     </>
   );
 };
 
-const Header = ({ OnclickToggleButton }) => {
+const HeaderOptions = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorE2, setAnchorE2] = useState(null);
+  const open1 = Boolean(anchorEl);
+  const open2 = Boolean(anchorE2);
   return (
-    <HeaderContainer className="dsdsd">
+    <Options>
+      <IconWrapper
+        id="basic-button"
+        aria-controls="basic-menu2"
+        aria-haspopup="true"
+        aria-expanded={open2 ? "true" : undefined}
+        Icon={ReplayOutlinedIcon}
+        onClick={(e) => setAnchorE2(e.currentTarget)}
+      >
+        <MenuUser
+          idmenu="menu-settings"
+          handleClosemenu={() => setAnchorE2(null)}
+          open={open2}
+          anchorEl={anchorE2}
+        />
+      </IconWrapper>
+
+      <IconWrapper
+        id="basic-button"
+        aria-controls="basic-menu"
+        aria-expanded={open1 ? "true" : undefined}
+        className="wrapper__menu-icon"
+        onClick={(e) => setAnchorEl(e.currentTarget)}
+        Icon={SettingsOutlinedIcon}
+      >
+        <MenuUser
+          idmenu="menu-shared"
+          handleCloseMenu={() => setAnchorEl(null)}
+          open={open1}
+          anchorEl={anchorEl}
+        />
+      </IconWrapper>
+    </Options>
+  );
+};
+
+const UserOption = () => {
+  return (
+    <UserOptions>
+      <div className="wrapper__menu-icon">
+        <AppsOutlinedIcon />
+      </div>
+      <ImgUser />
+    </UserOptions>
+  );
+};
+
+const HeaderLeft = ({ OnclickToggleNavleft }) => {
+  return (
+    <>
+      <MenuButtonWrapper onClick={OnclickToggleNavleft}>
+        <div className="wrapper__menu-icon">
+          <MenuOutlinedIcon />
+        </div>
+      </MenuButtonWrapper>
+      <LogoContainer>
+        <a href="#logo">
+          <Logo />
+          <span>Keep</span>
+        </a>
+      </LogoContainer>
+    </>
+  );
+};
+
+const Header = ({ OnclickToggleNavleft }) => {
+  return (
+    <Wrapper className="dsdsd">
       <HeaderComponent>
-        <MenuButtonWrapper onClick={OnclickToggleButton}>
-          <div className="wrapper__menu-icon">
-            <MenuOutlinedIcon />
-          </div>
-        </MenuButtonWrapper>
-        <LogoContainer>
-          <a href="#logo">
-            <Logo />
-            <span>Keep</span>
-          </a>
-        </LogoContainer>
-
+        <HeaderLeft OnclickToggleNavleft={OnclickToggleNavleft} />
         <FormSearch />
-        <Options>
-          <div className="wrapper__menu-icon">
-            <ReplayOutlinedIcon />
-          </div>
-          <div className="wrapper__menu-icon">
-            <ViewAgendaOutlinedIcon />
-          </div>
-
-          <div
-            id="basic-button"
-            aria-controls="basic-menu"
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            className="wrapper__menu-icon"
-            onClick={(e) => setAnchorEl(e.currentTarget)}
-          >
-            <SettingsOutlinedIcon />
-          </div>
-          <BasicMenu
-            handleCloseMenu={() => setAnchorEl(null)}
-            open={open}
-            anchorEl={anchorEl}
-          />
-        </Options>
-        <UserOptions>
-          <div className="wrapper__menu-icon">
-            <AppsOutlinedIcon />
-          </div>
-          <ImgUser />
-        </UserOptions>
+        <HeaderOptions />
+        <UserOption />
       </HeaderComponent>
-    </HeaderContainer>
+    </Wrapper>
   );
 };
 export default Header;

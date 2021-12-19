@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Input from "../../atoms/Inputs/Input";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const FormWrapper = styled.form`
   display: flex;
   width: 100%;
@@ -16,6 +16,7 @@ const FormWrapper = styled.form`
   -moz-box-shadow: ${(props) =>
     props.isClicked ? "-2px 3px 12px -8px rgba(0, 0, 0, 0.95)" : "none"};
   border-radius: 8px;
+  height: ${(props) => (props.isClicked ? "300px" : "auto")};
 `;
 
 const InputWrapper = styled.div`
@@ -60,6 +61,7 @@ const WrapperIcon = styled.button`
 export default function FormSearch() {
   const [valueSearch, setValueSearch] = useState("");
   const [isClickForm, setIsClickForm] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -70,6 +72,9 @@ export default function FormSearch() {
   const isClicked = () => {
     setIsClickForm(true);
   };
+  useEffect(() => {
+    console.log(isClickForm);
+  }, []);
   return (
     <FormWrapper
       onBlur={() => setIsClickForm(!isClickForm)}

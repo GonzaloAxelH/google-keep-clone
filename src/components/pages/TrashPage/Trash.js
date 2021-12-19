@@ -1,8 +1,8 @@
 import PageContainer from "../PageContainer";
-export default function Reminders({ open }) {
+export default function Trash({ open }) {
   return (
     <PageContainer open={open}>
-      <h1>Page Reminders</h1>
+      <h1>Trash</h1>
     </PageContainer>
   );
 }
