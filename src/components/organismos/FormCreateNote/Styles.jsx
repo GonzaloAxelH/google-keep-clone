@@ -5,7 +5,7 @@ export const WrapperFormCreateNote = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #fff;
+  background:${(props)=> props.backgroundColor};
   border: 1px solid rgba(0, 0, 0, 0.09);
   box-shadow: -2px 3px 12px -8px rgba(0, 0, 0, 0.95);
   -webkit-box-shadow: -2px 3px 12px -8px rgba(0, 0, 0, 0.95);
@@ -29,8 +29,10 @@ export const InputTitleWrapper = styled.div`
   display: ${(props) => (props.visible ? "block" : "none")};
 `;
 
-export const OptionsNotes = styled.div``;
+export const OptionsNotes = styled.div`
+`;
 export const Textarea = styled.textarea`
+  background:transparent;
   width: 100%;
   outline: none;
   font-size: 17px;

@@ -11,7 +11,7 @@ const useClickBody = (ref) => {
       }
     });
   }, [ref]);
-  return { isClickInElement };
+  return { isClickInElement,setIsClickInElement };
 };
 
 export default useClickBody;
