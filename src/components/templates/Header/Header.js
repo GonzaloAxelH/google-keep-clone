@@ -142,9 +142,9 @@ const HeaderLeft = ({ OnclickToggleNavleft }) => {
   );
 };
 
-const Header = ({ OnclickToggleNavleft }) => {
+const Header = ({ OnclickToggleNavleft, isScrollPage }) => {
   return (
-    <Wrapper className="dsdsd">
+    <Wrapper isScrollPage={isScrollPage}>
       <HeaderComponent>
         <HeaderLeft OnclickToggleNavleft={OnclickToggleNavleft} />
         <FormSearch />

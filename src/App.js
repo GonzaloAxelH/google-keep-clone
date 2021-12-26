@@ -16,9 +16,14 @@ const LayoutApp = styled.div`
 const App = () => {
   const [isOpenNavLeft, setIsOpenNavLeft] = useState(false);
   const [isOpenNavLeftHover, setIsOpenNavLeftHover] = useState(false);
+  const [scrollPage, setScrollPage] = useState(0);
   return (
     <WapperApp>
-      <Header OnclickToggleNavleft={() => setIsOpenNavLeft(!isOpenNavLeft)} />
+      <Header
+        OnclickToggleNavleft={() => setIsOpenNavLeft(!isOpenNavLeft)}
+        isScrollPage={scrollPage !== 0}
+      />
+
       <LayoutApp>
         <BrowserRouter>
           <NavLeft
@@ -27,7 +32,11 @@ const App = () => {
             onMouseEnter={() => setIsOpenNavLeftHover(true)}
             onMouseLeave={() => setIsOpenNavLeftHover(false)}
           />
-          <Routing open={isOpenNavLeft} />
+
+          <Routing
+            open={isOpenNavLeft}
+            getScrollPage={(e) => setScrollPage(e.target.scrollTop)}
+          />
         </BrowserRouter>
       </LayoutApp>
     </WapperApp>

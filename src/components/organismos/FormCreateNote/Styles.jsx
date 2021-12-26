@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 export const WrapperFormCreateNote = styled.form`
   width: 70%;
+  overflow: hidden;
   height: ${(props) => (props.isClicked ? "auto" : "60px")};
   display: flex;
   flex-direction: column;
@@ -16,6 +17,7 @@ export const WrapperFormCreateNote = styled.form`
 
 export const PortadaTitle = styled.div`
   width: 100%;
+  
   input {
     border: none;
     outline: none;
@@ -29,8 +31,7 @@ export const InputTitleWrapper = styled.div`
   display: ${(props) => (props.visible ? "block" : "none")};
 `;
 
-export const OptionsNotes = styled.div`
-`;
+
 export const Textarea = styled.textarea`
   background:transparent;
   width: 100%;
@@ -38,7 +39,7 @@ export const Textarea = styled.textarea`
   font-size: 17px;
   font-weight: 300;
   border: none;
-  padding: 12px 0 12px 0;
+  padding: 12px 0 12px 3px;
   font-family: sans-serif;
   word-wrap: break-word;
   resize: none;

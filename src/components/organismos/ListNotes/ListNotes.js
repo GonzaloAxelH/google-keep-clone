@@ -16,12 +16,13 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import UndoOutlinedIcon from "@mui/icons-material/UndoOutlined";
 import RedoOutlinedIcon from "@mui/icons-material/RedoOutlined";
 import ModalNote from "./ModalNote";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Note = ({ color }) => {
+import { connect } from "react-redux";
+const Note = ({ color, description, title }) => {
   const [openModal, setOpenModal] = useState(false);
-  const [titleNote, setTitleNote] = useState("Nota1");
-  const [descriptcionNote, setDescriptcionNote] = useState("Description");
+  const [titleNote, setTitleNote] = useState(title);
+  const [descriptcionNote, setDescriptcionNote] = useState(description);
   const handleClickNote = () => {
     setOpenModal(true);
   };
@@ -35,18 +36,16 @@ const Note = ({ color }) => {
         backgroundColor={color}
         witdh={"240px"}
       >
-        <h4>Nota 1</h4>
-        <p>Descripccion</p>
+        <h4>{title}</h4>
+        <p>{description}</p>
         <OptionsNotes>
           <div className="options-form-note">
             <AddAlertOutlinedIcon />
-            <PersonAddOutlinedIcon />
+
             <PaletteOutlinedIcon />
             <ImageOutlinedIcon />
-            <ArchiveOutlinedIcon />
+
             <MoreVertOutlinedIcon />
-            <UndoOutlinedIcon />
-            <RedoOutlinedIcon />
           </div>
         </OptionsNotes>
       </WrapperNote>
@@ -86,25 +85,26 @@ const Note = ({ color }) => {
   );
 };
 
-export default function ListNotes() {
+function ListNotes({ notes }) {
+  const [allNotes, setAllNotes] = useState([]);
+  useEffect(() => {
+    setAllNotes(notes);
+  }, [notes]);
   return (
     <>
       <Wrapper>
         <TitleNotes>Fijadas</TitleNotes>
         <FijedNotes>
-          <Note color="#CCFF90" />
-          <Note color="#F28B82" />
-          <Note color="#E6C9A8" />
-          <Note color="#FBBC04" />
-          <Note color="#D7AEFB" />
-          <Note color="#A7FFEB" />
-          <Note color="#FFFFFF" />
-          <Note color="#E6C9A8" />
-          <Note color="#FBBC04" />
-          <Note color="#D7AEFB" />
-          <Note color="#A7FFEB" />
-          <Note color="#CCFF90" />
-          <Note color="#F28B82" />
+          {allNotes.map((note) => {
+            return (
+              <Note
+                key={note.id}
+                color={note.valueBackground}
+                description={note.valueDescription}
+                title={note.valueTitle}
+              />
+            );
+          })}
         </FijedNotes>
         <TitleNotes>Others</TitleNotes>
         <OtherNotes></OtherNotes>
@@ -112,3 +112,10 @@ export default function ListNotes() {
     </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    notes: state.notes,
+  };
+};
+
+export default connect(mapStateToProps, null)(ListNotes);

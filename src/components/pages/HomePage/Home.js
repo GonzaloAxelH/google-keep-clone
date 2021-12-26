@@ -16,13 +16,13 @@ const ListWrapperNotes = styled.div`
 
 export default function Home({ open }) {
   return (
-    <PageContainer open={open}>
+    <>
       <WrapperCForm>
         <FormCreateNote />
       </WrapperCForm>
       <ListWrapperNotes>
         <ListNotes />
       </ListWrapperNotes>
-    </PageContainer>
+      </>
   );
 }

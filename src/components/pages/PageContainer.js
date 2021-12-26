@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRef, useEffect } from "react";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,9 +39,15 @@ const Contenido = styled.div`
   }
 `;
 
-function PageContainer({ children, open }) {
+function PageContainer({ children, open, getScrollPage }) {
+  const pageRef = useRef();
+  useEffect(() => {
+    pageRef.current.addEventListener("scroll", getScrollPage);
+    return () => {};
+  });
+
   return (
-    <Wrapper>
+    <Wrapper ref={pageRef}>
       <Contenido open={open}>{children}</Contenido>
     </Wrapper>
   );

@@ -13,11 +13,18 @@ export const  FijedNotes = styled.div`
 `;
 export const  OtherNotes = styled.div``;
 export const  TitleNotes = styled.p``;
-export const OptionsNotes = styled.div``;
+export const OptionsNotes = styled.div`
+    width:100%;
+    .options-form-note{
+      display:flex;
+      justify-content:space-between;
+    }
+`;
 export const  WrapperNote = styled.div`
   width: ${(props) => props.witdh};
   margin: 0.7em;
   min-height: 154px;
+  height:auto;
   background: ${(props) => props.backgroundColor};
   border: ${(props) =>
     !props.backgroundColor === "#FFFFFF"

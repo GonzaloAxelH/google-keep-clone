@@ -16,7 +16,6 @@ const FormWrapper = styled.form`
   -moz-box-shadow: ${(props) =>
     props.isClicked ? "-2px 3px 12px -8px rgba(0, 0, 0, 0.95)" : "none"};
   border-radius: 8px;
-  height: ${(props) => (props.isClicked ? "300px" : "auto")};
 `;
 
 const InputWrapper = styled.div`
@@ -29,6 +28,7 @@ const InputWrapper = styled.div`
     border: none;
     outline: none;
     padding: 11px 0;
+    font-size: 16px;
   }
 `;
 const WrapperIcon = styled.button`
@@ -72,9 +72,7 @@ export default function FormSearch() {
   const isClicked = () => {
     setIsClickForm(true);
   };
-  useEffect(() => {
-    console.log(isClickForm);
-  }, []);
+
   return (
     <FormWrapper
       onBlur={() => setIsClickForm(!isClickForm)}

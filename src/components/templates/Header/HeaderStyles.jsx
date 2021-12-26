@@ -10,6 +10,9 @@ export const Wrapper = styled.div`
   z-index: 12;
   padding: 8px;
 
+  box-shadow: ${(props)=> props.isScrollPage ? "-2px 3px 12px -8px rgb(0 0 0 / 95%)" : "none"};
+  -webkit-box-shadow: ;${(props)=> props.isScrollPage ? "-2px 3px 12px -8px rgb(0 0 0 / 95%)" : "none"};
+
   align-items: center;
 `;
 
