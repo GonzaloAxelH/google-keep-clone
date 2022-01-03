@@ -4,7 +4,7 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import { Contenido, Wrapper, ListItems, Item } from "./Styles.jsx";
+import { Contenido, Wrapper, ListItems, Item } from "./NavLeftStyles.jsx";
 import { paths } from "../../../Routes/Routes";
 
 function NavLeftContainer({ children, isOpen, hover, ...props }) {

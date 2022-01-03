@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Input from "../../atoms/Inputs/Input";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 const FormWrapper = styled.form`
   display: flex;
   width: 100%;

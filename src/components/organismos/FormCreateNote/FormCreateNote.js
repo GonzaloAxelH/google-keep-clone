@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import { addNote } from "../../../data/Redux/actionCreators";
 import { connect } from "react-redux";
-import ImagePreview from "./ImagePreview";
+import ImagePreview from "./ImagePreview/ImagePreview";
 import {
   WrapperFormCreateNote,
   InputTitleWrapper,
   PortadaTitle,
   Textarea,
-} from "./Styles.jsx";
+} from "./FormCreateNoteStyles.jsx";
 import autosize from "autosize";
 import React, { useState, useRef } from "react";
 import useClickBody from "../../../hooks/useClickBody";
 
-import FormFooterOptions from "./FormFooterOptions";
+import FormFooterOptions from "./FormOptions/FormOptions";
 
 import { v4 as uuidv4 } from "uuid";
 const FormFooter = styled.div`

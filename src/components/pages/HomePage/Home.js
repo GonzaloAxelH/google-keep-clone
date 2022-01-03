@@ -1,20 +1,8 @@
-import styled from "styled-components";
 import FormCreateNote from "../../organismos/FormCreateNote/FormCreateNote";
 import ListNotes from "../../organismos/ListNotes/ListNotes";
-import PageContainer from "../PageContainer";
-const WrapperCForm = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  padding: 2.5em 0;
-`;
+import { WrapperCForm, ListWrapperNotes } from "./PageHomeStyles.jsx";
 
-const ListWrapperNotes = styled.div`
-  margin: 0 5em;
-`;
-
-export default function Home({ open }) {
+export default function Home() {
   return (
     <>
       <WrapperCForm>
@@ -23,6 +11,6 @@ export default function Home({ open }) {
       <ListWrapperNotes>
         <ListNotes />
       </ListWrapperNotes>
-      </>
+    </>
   );
 }

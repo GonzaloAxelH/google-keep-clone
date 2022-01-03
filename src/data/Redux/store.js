@@ -10,10 +10,11 @@ const initialState = {
   notes: [],
   theme: "light",
 };
+
 function noteReducer(state = initialState.notes, action) {
   switch (action.type) {
     case ACTION.ADD_NOTE:
-      return state
+      return state;
     case ACTION.LOAD_NOTES:
       return action.payload;
     default:

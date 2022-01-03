@@ -1,4 +1,3 @@
-import PageContainer from "../PageContainer";
-export default function Archive({ open }) {
+export default function Archive() {
   return <h1>Archive</h1>;
 }

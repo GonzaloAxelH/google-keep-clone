@@ -1,4 +1,4 @@
-import Modal from "./Modal";
+import Modal from "./ModalBasic";
 export default function MyModalShared({ handleCloseModal, openModal }) {
   return (
     <Modal handleCloseModal={handleCloseModal} openModal={openModal}>

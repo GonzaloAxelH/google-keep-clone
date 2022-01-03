@@ -1,4 +1,4 @@
-import Modal from "./Modal";
+import Modal from "./ModalBasic";
 import styled from "styled-components";
 
 const ModalUserInfoWrapper = styled.div`

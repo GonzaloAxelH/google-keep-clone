@@ -5,8 +5,8 @@ import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import { useState } from "react";
 import styled from "styled-components";
-import { File, InputFile, LabelInputFile } from "./File";
-import ColorPicker from "./ColorPicker";
+import { File, InputFile, LabelInputFile } from "../FileUpload/FileUpload";
+import ColorPicker from "../ColorPicker/ColorPicker";
 
 const OptionsNotes = styled.div`
   display: flex;
@@ -29,14 +29,8 @@ const WrapperIconOption = styled.div`
     height: 18px;
   }
 `;
-const WrapperButtonClose = styled.div``;
 
-export default function FormFooterOptions({
-  handleFile,
-  getColor,
-  color,
-  refButton,
-}) {
+export default function FormOptions({ handleFile, getColor, color }) {
   const [openPicker, setOpenPicker] = useState(false);
   return (
     <>

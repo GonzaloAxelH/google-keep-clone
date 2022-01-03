@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-const WrapperImagenPreview = styled.div`
+export const WrapperImagenPreview = styled.div`
   position: relative;
   margin: 0;
   padding: 0;
@@ -35,13 +34,3 @@ const WrapperImagenPreview = styled.div`
     }
   }
 `;
-export default function ImagePreview({ url, id, onDeleteImage }) {
-  return (
-    <WrapperImagenPreview>
-      <img src={url} alt="" />
-      <div className="delete-btn-image" onClick={() => onDeleteImage(id)}>
-        <CancelOutlinedIcon />
-      </div>
-    </WrapperImagenPreview>
-  );
-}

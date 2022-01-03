@@ -33,6 +33,7 @@ export const  HeaderComponent = styled.div`
     cursor: pointer;
   }
   .wrapper__menu-icon:hover {
+
     background: rgb(241, 243, 244);
   }
 `;
@@ -63,9 +64,3 @@ export const  Options = styled.div`
 
   padding: 0 10px;
 `;
-export const  UserOptions = styled.div`
-  display: flex;
-
-  padding: 0 10px;
-`;
-

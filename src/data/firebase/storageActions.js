@@ -29,5 +29,3 @@ export const saveImage = (file, idNote) => {
       console.error("Upload failed", error);
     });
 };
-
-
