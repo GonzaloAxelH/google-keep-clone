@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { addNote } from "../../../data/Redux/actionCreators";
+import { addNote } from "../../../../data/Redux/actionCreators";
 import { connect } from "react-redux";
-import ImagePreview from "./ImagePreview/ImagePreview";
+import ImagePreview from "../../../molecules/ImagePreview/ImagePreview";
+
 import {
   WrapperFormCreateNote,
   InputTitleWrapper,
@@ -10,14 +11,13 @@ import {
 } from "./FormCreateNoteStyles.jsx";
 import autosize from "autosize";
 import React, { useState, useRef } from "react";
-import useClickBody from "../../../hooks/useClickBody";
+import useClickBody from "../../../../hooks/useClickBody";
 
-import FormFooterOptions from "./FormOptions/FormOptions";
+import FormFooterOptions from "../FormOptions/FormOptions";
 
 import { v4 as uuidv4 } from "uuid";
 const FormFooter = styled.div`
   display: flex;
-
   flex-direction: column;
   button {
     background: transparent;
@@ -30,7 +30,7 @@ const FormFooter = styled.div`
   }
 `;
 
-function FormCreateNote({ saveNote }) {
+function FormCreateNote({ saveNote, ...props }) {
   const formRef = useRef();
   const refButton = useRef();
   const textAreaRef = useRef();
@@ -82,6 +82,7 @@ function FormCreateNote({ saveNote }) {
       onSubmit={handleSubmit}
       isClicked={isClickForm}
       ref={formRef}
+      {...props}
     >
       {isClickForm ? (
         <div
@@ -129,7 +130,6 @@ function FormCreateNote({ saveNote }) {
               getColor={(color) => setValueBackground(color.hex)}
               color={valueBackground}
             />
-            <button type="submit">Enviar</button>
           </FormFooter>
         </>
       ) : null}

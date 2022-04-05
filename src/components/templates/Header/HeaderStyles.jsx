@@ -1,42 +1,22 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  display: flex;
+export const HeaderWrapper  = styled.div`
+  width: 100%;
   position: fixed;
-  width: calc(100% - 10px);
-  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid rgb(218, 220, 224);
   background: #fff;
   z-index: 12;
   padding: 8px;
-
+  
   box-shadow: ${(props)=> props.isScrollPage ? "-2px 3px 12px -8px rgb(0 0 0 / 95%)" : "none"};
-  -webkit-box-shadow: ;${(props)=> props.isScrollPage ? "-2px 3px 12px -8px rgb(0 0 0 / 95%)" : "none"};
-
+  -webkit-box-shadow: ${(props)=> props.isScrollPage ? "-2px 3px 12px -8px rgb(0 0 0 / 95%)" : "none"};
   align-items: center;
 `;
 
-export const  HeaderComponent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
 
-  .wrapper__menu-icon {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .wrapper__menu-icon:hover {
-
-    background: rgb(241, 243, 244);
-  }
-`;
 
 export const  MenuButtonWrapper = styled.div``;
 export const  LogoContainer = styled.div`
@@ -61,6 +41,6 @@ export const  LogoContainer = styled.div`
 
 export const  Options = styled.div`
   display: flex;
-
+  align-items: center;
   padding: 0 10px;
 `;

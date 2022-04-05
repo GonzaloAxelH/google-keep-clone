@@ -1,19 +1,36 @@
-import FormSearch from "../../molecules/FormSearch/FormSearch";
-import HeaderLeft from "./HeaderLeft";
-import HeaderOptions from "./HeaderOptions";
-import UserOption from "../../organismos/MenuUser.js/UserOption";
-import { Wrapper, HeaderComponent } from "./HeaderStyles.jsx";
+import React, { useContext } from "react";
 
-const Header = ({ OnclickToggleNavleft, isScrollPage }) => {
+import Logo from "../../atoms/ButtonImages/Logo";
+import HeaderOptions from "./HeaderOptions";
+import UserOption from "../../Modals/MenuUser/UserOption";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import {
+  HeaderWrapper,
+  MenuButtonWrapper,
+  LogoContainer,
+} from "./HeaderStyles.jsx";
+import { FullContext } from "../../../App";
+import FormSearch from "../../organismos/Forms/FormSearch/FormSearch";
+
+const Header = () => {
+  const { setOpenNavLeft, openNavLeft } = useContext(FullContext);
   return (
-    <Wrapper isScrollPage={isScrollPage}>
-      <HeaderComponent>
-        <HeaderLeft OnclickToggleNavleft={OnclickToggleNavleft} />
-        <FormSearch />
-        <HeaderOptions />
-        <UserOption />
-      </HeaderComponent>
-    </Wrapper>
+    <HeaderWrapper>
+      <MenuButtonWrapper onClick={() => setOpenNavLeft(!openNavLeft)}>
+        <div className="wrapper__menu-icon">
+          <MenuOutlinedIcon />
+        </div>
+      </MenuButtonWrapper>
+      <LogoContainer>
+        <a href="#logo">
+          <Logo />
+          <span>Keep</span>
+        </a>
+      </LogoContainer>
+      <FormSearch />
+      <HeaderOptions />
+      <UserOption />
+    </HeaderWrapper>
   );
 };
 export default Header;

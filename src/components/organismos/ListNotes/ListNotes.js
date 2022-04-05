@@ -1,11 +1,14 @@
+import Masonry from "react-masonry-css";
+import autosize from "autosize";
+import TextareaAutosize from "react-textarea-autosize";
 import {
   InputsForm,
   Wrapper,
   FijedNotes,
-  OtherNotes,
-  TitleNotes,
   WrapperNote,
   OptionsNotes,
+  WrapperListNotes,
+  Textarea,
 } from "./Styles.jsx";
 import AddAlertOutlinedIcon from "@mui/icons-material/AddAlertOutlined";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
@@ -15,13 +18,15 @@ import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import UndoOutlinedIcon from "@mui/icons-material/UndoOutlined";
 import RedoOutlinedIcon from "@mui/icons-material/RedoOutlined";
-import ModalNote from "./ModalNote";
-import { useState, useEffect } from "react";
+import ModalNote from "../../Modals/ModalNote";
+import { useState, useEffect, useRef } from "react";
 
 import { connect } from "react-redux";
-const Note = ({ color, description, title }) => {
+const Note = ({ color, description, title, ...props }) => {
   const [openModal, setOpenModal] = useState(false);
   const [titleNote, setTitleNote] = useState(title);
+  const textAreaRef = useRef();
+  autosize(textAreaRef.current);
   const [descriptcionNote, setDescriptcionNote] = useState(description);
   const handleClickNote = () => {
     setOpenModal(true);
@@ -31,22 +36,16 @@ const Note = ({ color, description, title }) => {
   };
   return (
     <>
-      <WrapperNote
-        onClick={handleClickNote}
-        backgroundColor={color}
-        witdh={"240px"}
-      >
-        <h4>{title}</h4>
-        <p>{description}</p>
-        <OptionsNotes>
-          <div className="options-form-note">
-            <AddAlertOutlinedIcon />
-
-            <PaletteOutlinedIcon />
-            <ImageOutlinedIcon />
-
-            <MoreVertOutlinedIcon />
-          </div>
+      <WrapperNote backgroundColor={color} {...props}>
+        <div className="info-note" onClick={handleClickNote}>
+          <h4>{title}</h4>
+          <p>{description}</p>
+        </div>
+        <OptionsNotes className="options-form-note">
+          <AddAlertOutlinedIcon />
+          <PaletteOutlinedIcon />
+          <ImageOutlinedIcon />
+          <MoreVertOutlinedIcon />
         </OptionsNotes>
       </WrapperNote>
       <ModalNote
@@ -61,8 +60,7 @@ const Note = ({ color, description, title }) => {
                 value={titleNote}
                 onChange={(e) => setTitleNote(e.target.value)}
               />
-              <input
-                type="text"
+              <TextareaAutosize
                 value={descriptcionNote}
                 onChange={(e) => setDescriptcionNote(e.target.value)}
               />
@@ -87,29 +85,35 @@ const Note = ({ color, description, title }) => {
 
 function ListNotes({ notes }) {
   const [allNotes, setAllNotes] = useState([]);
+
   useEffect(() => {
     setAllNotes(notes);
   }, [notes]);
+  const breakpointColumnsObj = {
+    default: 3,
+    1200: 3,
+    700: 2,
+    500: 1,
+  };
   return (
-    <>
-      <Wrapper>
-        <TitleNotes>Fijadas</TitleNotes>
-        <FijedNotes>
-          {allNotes.map((note) => {
-            return (
-              <Note
-                key={note.id}
-                color={note.valueBackground}
-                description={note.valueDescription}
-                title={note.valueTitle}
-              />
-            );
-          })}
-        </FijedNotes>
-        <TitleNotes>Others</TitleNotes>
-        <OtherNotes></OtherNotes>
-      </Wrapper>
-    </>
+    <WrapperListNotes>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        {allNotes.map((note) => {
+          return (
+            <Note
+              key={note.id}
+              color={note.valueBackground}
+              description={note.valueDescription}
+              title={note.valueTitle}
+            />
+          );
+        })}
+      </Masonry>
+    </WrapperListNotes>
   );
 }
 const mapStateToProps = (state) => {

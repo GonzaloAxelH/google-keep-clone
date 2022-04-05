@@ -1,93 +1,68 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import { Contenido, Wrapper, ListItems, Item } from "./NavLeftStyles.jsx";
-import { paths } from "../../../Routes/Routes";
-
-function NavLeftContainer({ children, isOpen, hover, ...props }) {
-  return (
-    <Wrapper hover={hover} isOpen={isOpen} {...props}>
-      {children}
-    </Wrapper>
-  );
-}
-
-export default function NavLeft({ open, hover, ...props }) {
+import { Contenido, Wrapper, ListItems } from "./NavLeftStyles.jsx";
+import { FullContext } from "../../../App.js";
+import ItemNavLeft from "../../molecules/ItemNavLeft/ItemNavLeft.js";
+export default function NavLeft() {
+  const { openNavLeft, openNavLeftHover, setOpenNavLeftHover } =
+    useContext(FullContext);
   const [posItem, setPosItem] = useState(1);
   return (
-    <NavLeftContainer hover={hover} isOpen={open} {...props}>
+    <Wrapper
+      hover={openNavLeftHover}
+      isOpen={openNavLeft}
+      onMouseEnter={() => setOpenNavLeftHover(true)}
+      onMouseLeave={() => setOpenNavLeftHover(false)}
+    >
       <Contenido>
         <ListItems>
-          <Item
-            to={paths.HOME}
-            hover={hover}
-            isOpen={open}
+          <ItemNavLeft
+            path="/"
             active={posItem === 1}
             onClick={() => setPosItem(1)}
+            Icon={() => <LightbulbOutlinedIcon />}
           >
-            <div className="content">
-              <LightbulbOutlinedIcon />
-            </div>
-            <span>Notas</span>
-          </Item>
-          <Item
-            to={paths.REMINDERS}
-            hover={hover}
-            isOpen={open}
+            Notas
+          </ItemNavLeft>
+          <ItemNavLeft
+            path="/reminders"
             active={posItem === 2}
+            Icon={() => <NotificationsNoneOutlinedIcon />}
             onClick={() => setPosItem(2)}
           >
-            <div>
-              <NotificationsNoneOutlinedIcon />
-            </div>
-
-            <span>Recordatorios</span>
-          </Item>
-          <Item
-            to={paths.LABELS}
-            hover={hover}
-            isOpen={open}
+            Recordatorios
+          </ItemNavLeft>
+          <ItemNavLeft
+            path="/labels"
             active={posItem === 3}
+            Icon={() => <EditOutlinedIcon />}
             onClick={() => setPosItem(3)}
           >
-            <div>
-              <EditOutlinedIcon />
-            </div>
-
-            <span>Editar etiquetas</span>
-          </Item>
-          <Item
-            to={paths.ARCHIVE}
-            hover={hover}
-            isOpen={open}
+            Editar etiquetas
+          </ItemNavLeft>
+          <ItemNavLeft
+            path="/archive"
             active={posItem === 4}
+            Icon={() => <ArchiveOutlinedIcon />}
             onClick={() => setPosItem(4)}
           >
-            <div>
-              <ArchiveOutlinedIcon />
-            </div>
+            Archivar
+          </ItemNavLeft>
 
-            <span>Archivar</span>
-          </Item>
-
-          <Item
-            to={paths.TRASH}
-            hover={hover}
-            isOpen={open}
-            active={posItem === 5}
+          <ItemNavLeft
+            path="/trash"
+            Icon={() => <DeleteOutlinedIcon />}
             onClick={() => setPosItem(5)}
+            active={posItem === 5}
           >
-            <div>
-              <DeleteOutlinedIcon />
-            </div>
-
-            <span>Papelera</span>
-          </Item>
+            Trash
+          </ItemNavLeft>
         </ListItems>
       </Contenido>
-    </NavLeftContainer>
+    </Wrapper>
   );
 }

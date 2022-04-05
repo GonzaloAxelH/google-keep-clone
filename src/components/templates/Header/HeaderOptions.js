@@ -28,7 +28,6 @@ const HeaderOptions = () => {
         />
       </IconWrapper>
 
-      
       <IconWrapper
         id="basic-button"
         aria-controls="basic-menu"

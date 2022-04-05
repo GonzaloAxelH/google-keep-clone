@@ -1,4 +1,3 @@
-import PageContainer from "../components/pages/PageContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../components/pages/HomePage/Home";
 import Reminders from "../components/pages/RemindersPage/Reminders";
@@ -13,9 +12,9 @@ export const paths = {
   TRASH: "/trash",
 };
 
-const Routing = ({ open, getScrollPage }) => {
+const Routing = () => {
   return (
-    <PageContainer open={open} getScrollPage={getScrollPage}>
+    <BrowserRouter>
       <Routes>
         <Route path={paths.HOME} element={<Home />} />
         <Route path={paths.REMINDERS} element={<Reminders />} />
@@ -23,7 +22,7 @@ const Routing = ({ open, getScrollPage }) => {
         <Route path={paths.ARCHIVE} element={<Archive />} />
         <Route path={paths.TRASH} element={<Trash />} />
       </Routes>
-    </PageContainer>
+    </BrowserRouter>
   );
 };
 export default Routing;

@@ -1,45 +1,35 @@
-import styled from "styled-components";
-import { useState } from "react";
-import Header from "./components/templates/Header/Header";
-import Routing from "./Routes/Routes";
-import NavLeft from "./components/templates/Navs/NavLeft";
-import { BrowserRouter } from "react-router-dom";
-
-const WapperApp = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const LayoutApp = styled.div`
-  display: flex;
-`;
-
+import React, { useState } from "react";
+import Layout from "./components/LayoutsContainers/Layouts/Layout";
+import HomePage from "./components/pages/HomePage/Home";
+import ArchivePage from "./components/pages/ArchivePage/Archive";
+import TrashPage from "./components/pages/TrashPage/Trash";
+import RemindersPage from "./components/pages/RemindersPage/Reminders";
+import LabelsPage from "./components/pages/LabelsPage/Labels";
+export const FullContext = React.createContext();
+export const ModalContext = React.createContext();
 const App = () => {
-  const [isOpenNavLeft, setIsOpenNavLeft] = useState(false);
-  const [isOpenNavLeftHover, setIsOpenNavLeftHover] = useState(false);
+  const [openNavLeft, setOpenNavLeft] = useState(false);
+  const [openNavLeftHover, setOpenNavLeftHover] = useState(false);
   const [scrollPage, setScrollPage] = useState(0);
+
+  const context = {
+    openNavLeft,
+    setOpenNavLeft,
+    openNavLeftHover,
+    setOpenNavLeftHover,
+    scrollPage,
+    setScrollPage,
+  };
   return (
-    <WapperApp>
-      <Header
-        OnclickToggleNavleft={() => setIsOpenNavLeft(!isOpenNavLeft)}
-        isScrollPage={scrollPage !== 0}
-      />
-
-      <LayoutApp>
-        <BrowserRouter>
-          <NavLeft
-            open={isOpenNavLeft}
-            hover={isOpenNavLeftHover}
-            onMouseEnter={() => setIsOpenNavLeftHover(true)}
-            onMouseLeave={() => setIsOpenNavLeftHover(false)}
-          />
-
-          <Routing
-            open={isOpenNavLeft}
-            getScrollPage={(e) => setScrollPage(e.target.scrollTop)}
-          />
-        </BrowserRouter>
-      </LayoutApp>
-    </WapperApp>
+    <FullContext.Provider value={context}>
+      <Layout>
+        <HomePage path="/" exact />
+        <RemindersPage path="/reminders" />
+        <LabelsPage path="/labels" />
+        <ArchivePage path="/archive" />
+        <TrashPage path="/trash" />
+      </Layout>
+    </FullContext.Provider>
   );
 };
 

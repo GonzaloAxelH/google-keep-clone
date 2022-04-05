@@ -2,11 +2,12 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 const style = {
-  position: "absolute",
+  position: "relative",
+  width: "70%",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-    outline:"none"
+  outline: "none",
 };
 
 export default function ModalNote({ handleCloseModal, openModal, children }) {
